@@ -1,0 +1,25 @@
+#%Module3.1.6#####################################################################
+##
+# for Tcl script use only
+set     version         3
+set     bazelversion      0.15.2
+set     tfversion         1.11.0
+set     kerasversion     2.2.5
+set     cudaversion     9.2
+set     conda_dir        /opt/apps/miniconda/python2.7/
+
+proc ModulesHelp { } {
+        global version cudaversion  numpyversion  kerasversion tfversion  conda_dir bazelversion
+        puts stderr "\tThis module loads MRQy  with deps from miniconda$version \n"
+        puts stderr "\tThis module loads miniconda$version for use with python 3.6, Keras $kerasversion, TF $tfversion \n"
+        puts stderr "\tInstall as much as possible with conda/pip, but Conda missing cuda include files. Install cuda, cudnn, nccl from nvidia and point the build here \n"
+        puts stderr "\tminiconda    - wget https://repo.anaconda.com/miniconda/Miniconda2-latest-Linux-x86_64.sh;  bash Miniconda2-latest-Linux-x86_64.sh -p $conda_dir -b -s"
+        puts stderr "\tdependencies - conda install pip  scikit-image "
+        puts stderr "\tdependencies - pip  install nibabel "
+        puts stderr "\tconda list | grep tensor \n"
+}
+
+
+module-whatis   'loads the miniconda $version '
+
+prepend-path   PATH             $conda_dir/bin
