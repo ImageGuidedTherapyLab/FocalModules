@@ -1,28 +1,21 @@
 #%Module3.1.6#####################################################################
-##
-## Thread model: posix
-## gcc version 6.4.0 20180424 (Ubuntu 6.4.0-17ubuntu1)
-## scrgp3$ uname -a
-## Linux scrgp3 4.15.0-20-generic #21-Ubuntu SMP Tue Apr 24 06:16:15 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
-## scrgp3$ lsb_release -a
-## No LSB modules are available.
-## Distributor ID: Ubuntu
-## Description:    Ubuntu 18.04 LTS
-## Release:        18.04
-## Codename:       bionic
 
 # for Tcl script use only
 set     version         3
 set     conda_dir        /opt/apps/miniconda/keras
+set     tfversion         1.11.0
+set     kerasversion     2.2.5
+set     cudaversion     9.2
 
 #export TF_CUDA_PATHS=/opt/apps/miniconda/maskrcnn/
 proc ModulesHelp { } {
-        global version conda_dir 
+        global version conda_dir cudaversion  kerasversion tfversion
         puts stderr "\tThis module loads miniconda$version for use with python 3.8, Keras, TF, numpy  \n"
         puts stderr "\tInstall as much as possible with conda/pip, but Conda missing cuda include files. Install cuda, cudnn, nccl from nvidia and point the build here \n"
 
         puts stderr "\tminiconda    - wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh;  bash Miniconda3-latest-Linux-x86_64.sh -p $conda_dir -b -s" 
-        puts stderr "\tkeras        - pip install tensorflow keras nibabel                                                                           "
+        puts stderr "\tcuda         - conda install python==3.6 cudatoolkit==9.2 cudnn tensorflow-gpu==$tfversion "
+        puts stderr "\tkeras        - pip install keras==$kerasversion nibabel                                                                           "
         puts stderr "\tapplication  - conda install matplotlib jupyter notebook pandas scikit-learn scikit-image                                         "
         puts stderr "\tconda list | grep tensor \n"
 }
