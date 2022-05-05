@@ -14,8 +14,9 @@ proc ModulesHelp { } {
         puts stderr "\tThis module loads miniconda$version for use with python 3.6, Keras $kerasversion, TF $tfversion \n"
         puts stderr "\tInstall as much as possible with conda/pip, but Conda missing cuda include files. Install cuda, cudnn, nccl from nvidia and point the build here \n"
         puts stderr "\tminiconda    - wget https://repo.anaconda.com/miniconda/Miniconda2-latest-Linux-x86_64.sh;  bash Miniconda2-latest-Linux-x86_64.sh -p $conda_dir -b -s"
-        puts stderr "\tdependencies - conda install pip  scikit-image "
-        puts stderr "\tdependencies - pip  install nibabel "
+        puts stderr "\tdependencies - conda install pip  cudatoolkit==9.2 cudnn tensorflow-gpu==$tfversion"
+        puts stderr "\tdependencies - pip  install keras==$kerasversion nibabel  pydicom "
+        puts stderr "\tapplication  - conda install matplotlib jupyter notebook pandas scikit-learn scikit-image                                         "
         puts stderr "\tconda list | grep tensor \n"
 }
 
