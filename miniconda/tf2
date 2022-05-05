@@ -1,0 +1,28 @@
+#%Module3.1.6#####################################################################
+
+# for Tcl script use only
+set     version         3
+set     conda_dir        /opt/apps/miniconda/tf2
+set     tfversion         2.4.1
+set     kerasversion     2.8.0
+set     cudaversion     10.1
+set     cudnnversion     7.6
+
+#export TF_CUDA_PATHS=/opt/apps/miniconda/maskrcnn/
+proc ModulesHelp { } {
+        global version conda_dir cudaversion  kerasversion tfversion
+        puts stderr "\tThis module loads miniconda$version for use with python 3.8, Keras, TF, numpy  \n"
+        puts stderr "\tInstall as much as possible with conda/pip, but Conda missing cuda include files. Install cuda, cudnn, nccl from nvidia and point the build here \n"
+
+        puts stderr "\tminiconda    - wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh;  bash Miniconda3-latest-Linux-x86_64.sh -p $conda_dir -b -s" 
+        puts stderr "\tcuda         - conda install python cudatoolkit cudnn tensorflow-gpu==$tfversion "
+        puts stderr "\tkeras        - pip install keras==$kerasversion nibabel  pydicom"
+        puts stderr "\tapplication  - conda install matplotlib jupyter notebook pandas scikit-learn scikit-image                                         "
+        puts stderr "\tconda list | grep tensor \n"
+}
+
+
+module-whatis   'loads the miniconda $version'
+
+prepend-path   PATH             $conda_dir/bin
+
