@@ -1,0 +1,25 @@
+#%Module3.1.6#####################################################################
+
+# for Tcl script use only
+set     version         3
+set     conda_dir        /opt/apps/miniforge/mistOct2024/
+set     tfversion         1.11.0
+set     kerasversion     2.2.5
+set     cudaversion     9.2
+
+#export TF_CUDA_PATHS=/opt/apps/miniconda/maskrcnn/
+proc ModulesHelp { } {
+        global version conda_dir cudaversion  kerasversion tfversion
+        puts stderr "\tThis module loads miniforge$version   \n"
+        puts stderr "\tInstall as much as possible with conda/pip, but Conda missing cuda include files. Install cuda, cudnn, nccl from nvidia and point the build here \n"
+        puts stderr "\twget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-\$\(uname\)-\$\(uname -m\).sh" 
+        puts stderr "\tbash Miniforge3-\$\(uname\)-\$\(uname -m\).sh -p $conda_dir -b -s" 
+        puts stderr "\tgit clone git@github.com:fuentesdt/MIST.git\n"
+        puts stderr "\tcd MIST; $conda_dir/bin/pip install -e . \n"
+}
+
+
+module-whatis   'loads the miniconda $version'
+
+prepend-path   PATH             $conda_dir/bin
+
